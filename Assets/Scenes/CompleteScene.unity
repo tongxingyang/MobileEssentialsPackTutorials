@@ -3166,6 +3166,8 @@ MonoBehaviour:
   turnSmoothing: 15
   anim: {fileID: 1962691720}
   agent: {fileID: 1962691717}
+  rigidBody: {fileID: 1962691719}
+  jumpForce: 100
 --- !u!1001 &978149530
 Prefab:
   m_ObjectHideFlags: 0
@@ -6104,6 +6106,11 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1962691719 stripped
+Rigidbody:
+  m_PrefabParentObject: {fileID: 54000011935005756, guid: 48fab97e56987724297d7647c4854242,
+    type: 2}
+  m_PrefabInternal: {fileID: 1480726684}
 --- !u!95 &1962691720 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95000013803824802, guid: 48fab97e56987724297d7647c4854242,
