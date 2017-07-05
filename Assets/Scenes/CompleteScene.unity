@@ -3109,6 +3109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975333647}
   - component: {fileID: 975333646}
+  - component: {fileID: 975333648}
   m_Layer: 0
   m_Name: FingerScript
   m_TagString: Untagged
@@ -3147,6 +3148,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &975333648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975333645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbbb0d80afadbc8409100672f7b2ae34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  navMarker: {fileID: 1000013200741800, guid: d1c178fa4fc558a49a6416808330a857, type: 2}
+  turnSmoothing: 15
+  anim: {fileID: 1962691720}
+  agent: {fileID: 1962691717}
 --- !u!1001 &978149530
 Prefab:
   m_ObjectHideFlags: 0
@@ -6054,7 +6073,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1962691715}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 665cf9ee5f550ea49b4b36405ac6710d, type: 3}
   m_Name: 
@@ -6085,6 +6104,11 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &1962691720 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000013803824802, guid: 48fab97e56987724297d7647c4854242,
+    type: 2}
+  m_PrefabInternal: {fileID: 1480726684}
 --- !u!4 &1979824329 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014110123446, guid: f85bb23add6f9284c97edeb046c2ced9,
