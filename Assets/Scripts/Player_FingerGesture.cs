@@ -9,25 +9,38 @@ public class Player_FingerGesture : MonoBehaviour
 	public LayerMask whatIsGround;	//A layer mask defining what layers constitute the ground
 	public GameObject navMarker;	//A reference to the prefab that is our "Nav Marker"
 	public float turnSmoothing = 15f;		//Speed that the player turns
-	public Animator anim;			//A reference to the player's animator component
-	public NavMeshAgent agent;		//A reference to the player's navmesh agent component
-	public Rigidbody rigidBody;	//A reference to the player's rigidbody component
-	[SerializeField] float jumpForce = 100f;			//The force that the player jumps with
+	public GameObject Player;
+	[SerializeField] float jumpForce = 6f;			//The force that the player jumps with
+	[SerializeField] Camera mainCamera;
+	[SerializeField] Transform rotateCameraAroundThisAxis;
+
+
+	private Animator anim;			//A reference to the player's animator component
+	private NavMeshAgent agent;		//A reference to the player's navmesh agent component
+	[SerializeField]private Rigidbody playerRigidBody;	//A reference to the player's rigidbody component
+	private Player_CheckIfOnGround checkIfOnGround; 
 
 	private NavMeshHit navHitInfo;	//Where on a navmesh the player is looking
-	private bool grounded = true;	//Is the player currently on the ground?
 
 	private TapGestureRecognizer tapGesture;
 	private TapGestureRecognizer doubleTapGesture;
+	private RotateGestureRecognizer rotateGesture;
 
 	private void Start()
 	{
+
+		anim = Player.GetComponent<Animator> ();
+		agent = Player.GetComponent<NavMeshAgent> ();
+		//playerRigidBody = Player.GetComponent<Rigidbody> ();
+		checkIfOnGround = Player.GetComponent<Player_CheckIfOnGround> ();
+
 		//Instantiate (create) our navmarker and disable (hide) it
 		navMarker = Instantiate (navMarker) as GameObject;
 		navMarker.SetActive (false);
 
-		//CreateDoubleTapGesture ();
+		CreateDoubleTapGesture ();
 		CreateTapGesture ();
+		CreateRotateGesture ();
 	}
 
 	private void Update()
@@ -50,6 +63,13 @@ public class Player_FingerGesture : MonoBehaviour
 		doubleTapGesture.Updated += DoubleTapGestureCallback;
 		//doubleTapGesture.RequireGestureRecognizerToFail = tripleTapGesture;
 		FingersScript.Instance.AddGesture(doubleTapGesture);
+	}
+
+	private void CreateRotateGesture()
+	{
+		rotateGesture = new RotateGestureRecognizer();
+		rotateGesture.Updated += RotateGestureCallback;
+		FingersScript.Instance.AddGesture(rotateGesture);
 	}
 
 	private void TapGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
@@ -90,53 +110,20 @@ public class Player_FingerGesture : MonoBehaviour
 			GestureTouch t = FirstTouch(touches);
 			DebugText("Double tapped at {0}, {1}", t.X, t.Y);
 
-			//Did the player press the "Jump" button AND are they on the ground? NOTE: we check
-			//for GetButtonDown() in the regular Update() instad of FixedUpdate() since FixedUpdate() 
-			//runs slower and thus can miss our input. 
-			if (grounded) 
-			{
-				//Add a Y-axis force to the character
-				rigidBody.AddForce (new Vector3 (0f, jumpForce, 0f), ForceMode.Impulse);
-				//Tell the animator to play the jumping animation
-				anim.SetTrigger ("Jump");
-				//We are no longer on the ground
-				grounded = false;
-			}
-
-			//Update the animator by telling it whether or not we are currently on the ground
-			anim.SetBool ("Grounded", grounded);
+			anim.SetTrigger ("Chop");
 		}
 	}
 
-
-	void CheckForMovement()
+	private void RotateGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
 	{
-		//Look to see if we pressed "Fire1" (left mouse, screen touch, trigger, etc). 
-		//If we did, we need to figure out what we clicked or tapped on in the scene
-		if (Input.GetButtonDown ("Fire1")) 
+		if (gesture.State == GestureRecognizerState.Executing)
 		{
-			//Create a ray from the main camera through our mouse's position
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			//Declare a variable to store the results of a raycast
-			RaycastHit hit;
-
-			//If this ray hits something on the ground layer...
-			if (Physics.Raycast(ray, out hit, 1000, whatIsGround))
-			{
-				//...look at the navmesh to determine if the ray is within 5 units of it (we can only
-				//send the player to spots on the navmesh). If it is...
-				if (NavMesh.SamplePosition (hit.point, out navHitInfo, 5, NavMesh.AllAreas)) 
-				{
-					//...tell the navmesh agent to go to that spot...
-					agent.SetDestination (navHitInfo.position);
-					//...move our navmarker to that spot...
-					navMarker.transform.position = navHitInfo.position;
-					//...and enable (show it)
-					navMarker.SetActive (true);
-				} 
-			}
+			DebugText ("Rotating");
+			mainCamera.transform.RotateAround (rotateCameraAroundThisAxis.position, Vector3.up, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg);
+			//Earth.transform.Rotate(0.0f, 0.0f, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg);
 		}
 	}
+		
 
 	void UpdateAnimation()
 	{
@@ -156,7 +143,7 @@ public class Player_FingerGesture : MonoBehaviour
 		}
 
 		//If we are within our "Stopping Distance" of the destination...
-		if (agent.remainingDistance <= agent.stoppingDistance + .1f) 
+		if (agent.isOnNavMesh && agent.remainingDistance <= agent.stoppingDistance + .1f) 
 		{
 			//...disable (hide) the nav marker
 			navMarker.SetActive (false);
