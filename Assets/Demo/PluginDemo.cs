@@ -57,6 +57,10 @@ public class PluginDemo : MonoBehaviour {
 				cc.SetInfo ( m_contactsInfo[i] );
 			}
 
+			RectTransform rt = contentParent.GetComponent<RectTransform> ( );
+			rt.sizeDelta = new Vector2 ( rt.sizeDelta.x , 75 * _totalContacts );
+
+
 		}
 		else
 		{
