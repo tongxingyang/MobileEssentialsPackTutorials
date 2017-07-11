@@ -3192,6 +3192,7 @@ MonoBehaviour:
     m_Bits: 256
   navMarker: {fileID: 1000013200741800, guid: d1c178fa4fc558a49a6416808330a857, type: 2}
   turnSmoothing: 15
+  cameraTurnSpeed: 10
   Player: {fileID: 1962691715}
   mainCamera: {fileID: 1475656318}
   rotateCameraAroundThisAxis: {fileID: 61270668}
@@ -6134,25 +6135,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1962691718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1962691715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbbb0d80afadbc8409100672f7b2ae34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  navMarker: {fileID: 1000013200741800, guid: d1c178fa4fc558a49a6416808330a857, type: 2}
-  turnSmoothing: 15
-  Player: {fileID: 1962691715}
-  mainCamera: {fileID: 1475656318}
-  rotateCameraAroundThisAxis: {fileID: 61270668}
 --- !u!114 &1962691722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6169,7 +6151,7 @@ MonoBehaviour:
   jumpForce: 6
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!4 &1979824329 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014110123446, guid: f85bb23add6f9284c97edeb046c2ced9,

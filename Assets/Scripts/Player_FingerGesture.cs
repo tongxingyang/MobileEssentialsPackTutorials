@@ -51,7 +51,7 @@ public class Player_FingerGesture : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if(beginCameraFollow)
+		//if(beginCameraFollow)
 		{
 			//cameraOffset = mainCamera.transform.position - Player.transform.position;
 			Vector3 targetCamPos = Player.transform.position + cameraOffset;
