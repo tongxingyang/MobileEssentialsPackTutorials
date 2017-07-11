@@ -16,7 +16,6 @@ public class Player_FingerGesture : MonoBehaviour
 	[SerializeField] Transform rotateCameraAroundThisAxis;
 
 	private Vector3 cameraOffset; 
-	private bool beginCameraFollow;
 
 	private Animator anim;			//A reference to the player's animator component
 	private NavMeshAgent agent;		//A reference to the player's navmesh agent component
@@ -51,14 +50,8 @@ public class Player_FingerGesture : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		//if(beginCameraFollow)
-		{
-			//cameraOffset = mainCamera.transform.position - Player.transform.position;
-			Vector3 targetCamPos = Player.transform.position + cameraOffset;
-			//DebugText ("targetCamPos : " + targetCamPos);
-			mainCamera.transform.position = Vector3.Lerp (mainCamera.transform.position, targetCamPos, 5 * Time.deltaTime);
-
-		}
+		Vector3 targetCamPos = Player.transform.position + cameraOffset;
+		mainCamera.transform.position = Vector3.Lerp (mainCamera.transform.position, targetCamPos, 5 * Time.deltaTime);
 	}
 
 	private void CreateTapGesture()
@@ -111,8 +104,6 @@ public class Player_FingerGesture : MonoBehaviour
 					navMarker.transform.position = navHitInfo.position;
 					//...and enable (show it)
 					navMarker.SetActive (true);
-
-					beginCameraFollow = true;
 				} 
 			}
 		}
@@ -137,8 +128,6 @@ public class Player_FingerGesture : MonoBehaviour
 			mainCamera.transform.LookAt (Player.transform.position);
 
 			cameraOffset = mainCamera.transform.position - Player.transform.position;
-
-			beginCameraFollow = true;
 		} 
 	}
 		
