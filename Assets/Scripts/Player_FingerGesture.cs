@@ -124,6 +124,7 @@ public class Player_FingerGesture : MonoBehaviour
 	{
 		if (gesture.State == GestureRecognizerState.Executing) 
 		{
+			DebugText("Rotating gesture : Angle : " + rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg);
 			mainCamera.transform.RotateAround (Player.transform.position, Vector3.up, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg * cameraTurnSpeed);
 			mainCamera.transform.LookAt (Player.transform.position);
 
@@ -136,6 +137,8 @@ public class Player_FingerGesture : MonoBehaviour
 	{
 		//Record the desired speed of the navmesh agent
 		float speed = agent.desiredVelocity.magnitude;
+
+		DebugText ("speed of animation : " + speed);
 
 		//Tell the animator how fast the navmesh agent is going
 		anim.SetFloat("Speed", speed);
