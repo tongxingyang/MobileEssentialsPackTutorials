@@ -13,7 +13,6 @@ public class Player_FingerGesture : MonoBehaviour
 	public GameObject Player;
 
 	[SerializeField] Camera mainCamera;
-	[SerializeField] Transform rotateCameraAroundThisAxis;
 
 	private Vector3 cameraOffset; 
 
