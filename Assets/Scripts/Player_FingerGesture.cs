@@ -6,8 +6,6 @@ using DigitalRubyShared;
 
 public class Player_FingerGesture : MonoBehaviour 
 {
-	[SerializeField] bool test; 
-
 	public LayerMask whatIsGround;	//A layer mask defining what layers constitute the ground
 	public GameObject navMarker;	//A reference to the prefab that is our "Nav Marker"
 	public float turnSmoothing = 15f;		//Speed that the player turns
@@ -34,7 +32,6 @@ public class Player_FingerGesture : MonoBehaviour
 		anim = Player.GetComponent<Animator> ();
 		agent = Player.GetComponent<NavMeshAgent> ();
 	
-
 		//Instantiate (create) our navmarker and disable (hide) it
 		navMarker = Instantiate (navMarker) as GameObject;
 		navMarker.SetActive (false);
