@@ -6,19 +6,22 @@ using DigitalRubyShared;
 
 public class Player_FingerGesture : MonoBehaviour 
 {
+	[SerializeField] bool test; 
+
 	public LayerMask whatIsGround;	//A layer mask defining what layers constitute the ground
 	public GameObject navMarker;	//A reference to the prefab that is our "Nav Marker"
 	public float turnSmoothing = 15f;		//Speed that the player turns
+	public float cameraTurnSpeed = 10f;
 	public GameObject Player;
-	[SerializeField] float jumpForce = 6f;			//The force that the player jumps with
+
 	[SerializeField] Camera mainCamera;
 	[SerializeField] Transform rotateCameraAroundThisAxis;
 
+	private Vector3 cameraOffset; 
+	private bool beginCameraFollow;
 
 	private Animator anim;			//A reference to the player's animator component
 	private NavMeshAgent agent;		//A reference to the player's navmesh agent component
-	[SerializeField]private Rigidbody playerRigidBody;	//A reference to the player's rigidbody component
-	private Player_CheckIfOnGround checkIfOnGround; 
 
 	private NavMeshHit navHitInfo;	//Where on a navmesh the player is looking
 
@@ -28,11 +31,9 @@ public class Player_FingerGesture : MonoBehaviour
 
 	private void Start()
 	{
-
 		anim = Player.GetComponent<Animator> ();
 		agent = Player.GetComponent<NavMeshAgent> ();
-		//playerRigidBody = Player.GetComponent<Rigidbody> ();
-		checkIfOnGround = Player.GetComponent<Player_CheckIfOnGround> ();
+	
 
 		//Instantiate (create) our navmarker and disable (hide) it
 		navMarker = Instantiate (navMarker) as GameObject;
@@ -41,11 +42,26 @@ public class Player_FingerGesture : MonoBehaviour
 		CreateDoubleTapGesture ();
 		CreateTapGesture ();
 		CreateRotateGesture ();
+
+		cameraOffset = mainCamera.transform.position - Player.transform.position;
+		mainCamera.transform.LookAt(Player.transform.position);
 	}
 
 	private void Update()
 	{
 		UpdateAnimation ();
+	}
+
+	private void LateUpdate()
+	{
+		if(beginCameraFollow)
+		{
+			//cameraOffset = mainCamera.transform.position - Player.transform.position;
+			Vector3 targetCamPos = Player.transform.position + cameraOffset;
+			//DebugText ("targetCamPos : " + targetCamPos);
+			mainCamera.transform.position = Vector3.Lerp (mainCamera.transform.position, targetCamPos, 5 * Time.deltaTime);
+
+		}
 	}
 
 	private void CreateTapGesture()
@@ -98,6 +114,8 @@ public class Player_FingerGesture : MonoBehaviour
 					navMarker.transform.position = navHitInfo.position;
 					//...and enable (show it)
 					navMarker.SetActive (true);
+
+					beginCameraFollow = true;
 				} 
 			}
 		}
@@ -116,12 +134,15 @@ public class Player_FingerGesture : MonoBehaviour
 
 	private void RotateGestureCallback(GestureRecognizer gesture, ICollection<GestureTouch> touches)
 	{
-		if (gesture.State == GestureRecognizerState.Executing)
+		if (gesture.State == GestureRecognizerState.Executing) 
 		{
-			DebugText ("Rotating");
-			mainCamera.transform.RotateAround (rotateCameraAroundThisAxis.position, Vector3.up, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg);
-			//Earth.transform.Rotate(0.0f, 0.0f, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg);
-		}
+			mainCamera.transform.RotateAround (Player.transform.position, Vector3.up, rotateGesture.RotationRadiansDelta * Mathf.Rad2Deg * cameraTurnSpeed);
+			mainCamera.transform.LookAt (Player.transform.position);
+
+			cameraOffset = mainCamera.transform.position - Player.transform.position;
+
+			beginCameraFollow = true;
+		} 
 	}
 		
 

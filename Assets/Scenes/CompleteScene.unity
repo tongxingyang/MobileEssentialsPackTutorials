@@ -495,7 +495,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!1001 &87790800
 Prefab:
@@ -1019,7 +1019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &193720553
 GameObject:
@@ -2615,51 +2615,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000011061670130, guid: c38ab02446f97bf468d863831ea209d8,
     type: 2}
   m_PrefabInternal: {fileID: 336114262}
---- !u!1 &775443158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 775443160}
-  - component: {fileID: 775443159}
-  m_Layer: 0
-  m_Name: Viking
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!54 &775443159
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 775443158}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!4 &775443160
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 775443158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2926986, y: 336.87225, z: -5.338539}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 61270668}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &776616534
 Prefab:
   m_ObjectHideFlags: 0
@@ -3205,7 +3160,7 @@ MonoBehaviour:
   SimulateMouseWithTouches: 0
   PassThroughObjects: []
   TouchCircles: []
-  ShowTouches: 0
+  ShowTouches: 1
   DefaultDPI: 200
   ClearGesturesOnLevelLoad: 1
 --- !u!4 &975333647
@@ -3219,7 +3174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &975333648
 MonoBehaviour:
@@ -3238,10 +3193,8 @@ MonoBehaviour:
   navMarker: {fileID: 1000013200741800, guid: d1c178fa4fc558a49a6416808330a857, type: 2}
   turnSmoothing: 15
   Player: {fileID: 1962691715}
-  jumpForce: 100
   mainCamera: {fileID: 1475656318}
-  rotateCameraAroundThisAxis: {fileID: 775443160}
-  playerRigidBody: {fileID: 775443159}
+  rotateCameraAroundThisAxis: {fileID: 61270668}
 --- !u!1001 &978149530
 Prefab:
   m_ObjectHideFlags: 0
@@ -3800,7 +3753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012784287768, guid: abf2a0617e71b114793001743fdd50f2, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abf2a0617e71b114793001743fdd50f2, type: 2}
@@ -4560,7 +4513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!114 &1475656320
 MonoBehaviour:
@@ -4867,7 +4820,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475656314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db4f80fbced71a3439a8ccc4d076b55f, type: 3}
   m_Name: 
@@ -4879,19 +4832,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 775443160}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.2926986
       objectReference: {fileID: 0}
     - target: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -335.22226
+      value: 1.6499939
       objectReference: {fileID: 0}
     - target: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.338539
       objectReference: {fileID: 0}
     - target: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4911,7 +4864,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000011195779580, guid: 48fab97e56987724297d7647c4854242,
         type: 2}
@@ -6181,7 +6134,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1962691721
+--- !u!114 &1962691718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6189,13 +6142,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1962691715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab0f08ffb1198694eb8eb7d8b0b6dd1a, type: 3}
+  m_Script: {fileID: 11500000, guid: cbbb0d80afadbc8409100672f7b2ae34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grounded: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
+  navMarker: {fileID: 1000013200741800, guid: d1c178fa4fc558a49a6416808330a857, type: 2}
+  turnSmoothing: 15
+  Player: {fileID: 1962691715}
+  mainCamera: {fileID: 1475656318}
+  rotateCameraAroundThisAxis: {fileID: 61270668}
 --- !u!114 &1962691722
 MonoBehaviour:
   m_ObjectHideFlags: 0
