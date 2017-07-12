@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.56348103, g: 0.6646086, b: 0.84461623, a: 1}
+  m_IndirectSpecularColor: {r: 0.5636672, g: 0.664523, b: 0.84320325, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 0
+    m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 8
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 112000336, guid: c9dc15590a9cad94eb31db3da34930c9,
     type: 2}
-  m_ShadowMaskMode: 2
+  m_ShadowMaskMode: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -204,11 +204,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010881574930, guid: 3684648c240cc2646916a8a5df42433e,
     type: 2}
   m_PrefabInternal: {fileID: 741242184}
---- !u!4 &61270668 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000010456521964, guid: 48fab97e56987724297d7647c4854242,
-    type: 2}
-  m_PrefabInternal: {fileID: 1480726684}
 --- !u!1 &80074334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,6 +4067,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224000011021887972, guid: 349da26c65805184fbc4558eb236bcc5,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 198.3999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 349da26c65805184fbc4558eb236bcc5, type: 2}
   m_IsPrefabParent: 0
@@ -4986,7 +4986,6 @@ GameObject:
   - component: {fileID: 1475656323}
   - component: {fileID: 1475656322}
   - component: {fileID: 1475656320}
-  - component: {fileID: 1475656324}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5363,19 +5362,6 @@ MonoBehaviour:
     texture: {fileID: 0}
     contribution: 1
   m_Shader: {fileID: 4800000, guid: 964b34bbab7f5e64fa40f37eaccac1ad, type: 3}
---- !u!114 &1475656324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1475656314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db4f80fbced71a3439a8ccc4d076b55f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 61270668}
-  speed: 5
 --- !u!1001 &1480726684
 Prefab:
   m_ObjectHideFlags: 0
@@ -6301,7 +6287,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -6315,7 +6301,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
