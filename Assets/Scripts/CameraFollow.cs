@@ -16,7 +16,6 @@ public class CameraFollow : MonoBehaviour
         //Record the camera's initial position offset from the target.
 		//The camera will then maintain this offset
         offset = transform.position - target.position;
-		transform.LookAt (target.transform);
     }
 		
     void FixedUpdate ()
