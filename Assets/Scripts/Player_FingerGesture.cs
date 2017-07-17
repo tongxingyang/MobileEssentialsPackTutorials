@@ -34,9 +34,9 @@ public class Player_FingerGesture : MonoBehaviour
 		navMarker = Instantiate (navMarker) as GameObject;
 		navMarker.SetActive (false);
 
-		CreateDoubleTapGesture ();
-		CreateTapGesture ();
-		CreateRotateGesture ();
+		//CreateDoubleTapGesture ();
+		//CreateTapGesture ();
+		//CreateRotateGesture ();
 
 		cameraOffset = mainCamera.transform.position - Player.transform.position;
 		mainCamera.transform.LookAt(Player.transform.position);
@@ -115,7 +115,7 @@ public class Player_FingerGesture : MonoBehaviour
 			GestureTouch t = FirstTouch(touches);
 			DebugText("Double tapped at {0}, {1}", t.X, t.Y);
 
-			anim.SetTrigger ("Chop");
+			//anim.SetTrigger ("Chop");
 		}
 	}
 
